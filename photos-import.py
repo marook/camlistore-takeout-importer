@@ -8,7 +8,6 @@ import re
 import sys
 
 def main():
-    # properties I used: description, title, url, geoInfo.longitude_, geoInfo.latitude_
     for photo in find_photos(sys.argv[1:]):
         photoPath = photo['$photoPath']
         description = photo['description']
