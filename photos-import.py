@@ -24,9 +24,15 @@ def main():
         permanodeRef = blobRefs[2]
 
         if(not description is None):
-            cam.camput('attr', permanodeRef, 'description', description)
+            try:
+                cam.camput('attr', permanodeRef, 'description', description)
+            except UnicodeEncodeError:
+                print 'Failed to persist description for %s' % (photo['$metadataPath'], )
         if(not title is None):
-            cam.camput('attr', permanodeRef, 'title', title)
+            try:
+                cam.camput('attr', permanodeRef, 'title', title)
+            except UnicodeEncodeError:
+                print 'Failed to persist tile for %s' % (photo['$metadataPath'], )
         cam.camput('attr', permanodeRef, 'srcUrl', url)
 
         if(not lng is None and not lat is None):
