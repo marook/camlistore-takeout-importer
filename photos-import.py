@@ -46,12 +46,14 @@ def find_photos(root_paths):
                     continue
 
                 metadata_path = os.path.join(root, file_name)
+                metadata = None
                 with open(metadata_path, 'r') as f:
                     metadata = json.load(f)
-                    metadata['$metadataPath'] = metadata_path
-                    metadata['$photoPath'] = photo_file_name
 
-                    yield metadata
+                metadata['$metadataPath'] = metadata_path
+                metadata['$photoPath'] = photo_file_name
+
+                yield metadata
 
 DIR_METADATA_PATTERN = re.compile('^Metadaten(\([0-9]+\))?\.json$')
 NUMBER_SUFFIX_PATTERN = re.compile('^(.*)([.](?:jpg|png|jpeg|gif))([(][0-9]+[)])$')
